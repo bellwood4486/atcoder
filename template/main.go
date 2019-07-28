@@ -4,11 +4,9 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"os"
 	"strconv"
+	"strings"
 )
-
-var sc = newSplitScanner(os.Stdin)
 
 func newScanner(r io.Reader) *bufio.Scanner {
 	return bufio.NewScanner(r)
@@ -20,12 +18,12 @@ func newSplitScanner(r io.Reader) *bufio.Scanner {
 	return sc
 }
 
-func nextLine() string {
+func nextLine(sc *bufio.Scanner) string {
 	sc.Scan()
 	return sc.Text()
 }
 
-func nextInt() int {
+func nextInt(sc *bufio.Scanner) int {
 	sc.Scan()
 	i, e := strconv.Atoi(sc.Text())
 	if e != nil {
@@ -35,5 +33,19 @@ func nextInt() int {
 }
 
 func main() {
-	fmt.Println("hello")
+	// String version
+	str := `
+3
+1 2 3
+`
+	var sc = newSplitScanner(strings.NewReader(str))
+
+	//var sc = newSplitScanner(os.Stdin)
+	n := nextInt(sc)
+	a := make([]int, n)
+	for i := 0; i < n; i++ {
+		a[i] = nextInt(sc)
+	}
+
+	fmt.Println(n, a)
 }
