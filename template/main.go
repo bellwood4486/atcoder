@@ -12,15 +12,15 @@ func newScanner(r io.Reader) *bufio.Scanner {
 	return bufio.NewScanner(r)
 }
 
+func nextLine(sc *bufio.Scanner) string {
+	sc.Scan()
+	return sc.Text()
+}
+
 func newSplitScanner(r io.Reader) *bufio.Scanner {
 	sc := bufio.NewScanner(r)
 	sc.Split(bufio.ScanWords)
 	return sc
-}
-
-func nextLine(sc *bufio.Scanner) string {
-	sc.Scan()
-	return sc.Text()
 }
 
 func nextInt(sc *bufio.Scanner) int {
@@ -33,7 +33,6 @@ func nextInt(sc *bufio.Scanner) int {
 }
 
 func main() {
-	// String version
 	str := `
 3
 1 2 3
