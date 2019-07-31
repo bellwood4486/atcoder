@@ -18,13 +18,30 @@ func nextInt() int {
 	return i
 }
 
-func isAsc(ps []int) bool {
-	for i := 0; i < len(ps)-1; i++ {
-		if ps[i] > ps[i+1] {
-			return false
+func main() {
+	sc.Split(bufio.ScanWords)
+	n := nextInt()
+	ps := make([]int, n)
+	for i := 0; i < n; i++ {
+		ps[i] = nextInt()
+	}
+
+	fmt.Println(solve(n, ps))
+	//fmt.Println(answer(n, ps))
+}
+
+func answer(N int, Ps []int) string {
+	c := 0
+	for i := range Ps[:len(Ps)-1] {
+		if Ps[i] != i+1 {
+			c++
 		}
 	}
-	return true
+	if c <= 2 {
+		return "YES"
+	} else {
+		return "NO"
+	}
 }
 
 func solve(n int, ps []int) string {
@@ -56,13 +73,11 @@ func solve(n int, ps []int) string {
 	return "NO"
 }
 
-func main() {
-	sc.Split(bufio.ScanWords)
-	n := nextInt()
-	ps := make([]int, n)
-	for i := 0; i < n; i++ {
-		ps[i] = nextInt()
+func isAsc(ps []int) bool {
+	for i := 0; i < len(ps)-1; i++ {
+		if ps[i] > ps[i+1] {
+			return false
+		}
 	}
-
-	fmt.Println(solve(n, ps))
+	return true
 }
